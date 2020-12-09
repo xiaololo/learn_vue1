@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue 原理</title>
+</head>
+
+<body>
+	Vue原理包括哪些？
+	组件化和MVVM
+	响应式原理
+	vdom和diff算法 （热门技术）
+	模板编译
+	组件渲染过程（考察是否全面）
+	前端路由
+
+
+	## 模板编译
+	模板是vue开发中最常用的部分，即与使用相关联的原理
+	面试不会直接问，通过“组件渲染和更新过程”考察
+
+	前置知识：JS的 with 语法
+	vue template complier将模板编译为render函数
+	执行render函数生成vnode
+
+	<!-- vnode可以渲染到浏览器的DOM元素上
+	vnode可以在组件修改后触发更新 -->
+
+	## 1、with语法
+	<script src="./with.js"></script>
+	改变{}内自由变量的查找规则，当做obj的属性来查找
+	如果找不到匹配的onj属性，就会报错
+	with慎用，它打破了作用域规则，易读性变差
+	
+	---------------------------------------
+	## 2.模板编译
+	模板不是html,有指令，插值、JS表达式，能判断、循环
+	html是标签语言，只有JS才能实现判断、循环（图灵完备的）
+	因此，模板一定是转换为某种JS代码，即编译模板
+
+	## 代码演示
+	新建文件夹 demo-MBBY，初始化npm环境,生成了package.json文件
+	npm init -y
+
+	下载 vue-template-compiler
+	npm i vue-template-compiler --save
+
+	新建index.js文件
+
+	运行 node index.js
+	
+	// vue模板编译方法将 vue模板 生成 ->render函数()
+	// render函数返回 -> vnode
+	// vnode 渲染
+
+
+	模板编译总结：
+	模板编译为rander函数，执行render函数返回vndoe
+	基于vnode在执行patch和diff
+	使用webpack vue -loader，会在开发环境下编译模板（重要）
+
+	---------------------------------------
+	## vue组件中使用render代替template
+	复杂情况下，不能用template，可以考虑用render
+	React一直都用render（没有模板）
+
+	---------------------------------------
+	总结
+	with语法
+	模板-render函数-vnode-渲染和更新
+	vue组件中使用render代替template
+
+</body>
+
+</html>

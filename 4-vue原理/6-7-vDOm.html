@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue 原理</title>
+</head>
+
+<body>
+	Vue原理包括哪些？
+	组件化和MVVM
+	响应式原理
+	vdom 和diff算法 （热门技术）
+	模板编译
+	组件渲染过程（考察是否全面）
+	前端路由
+
+	## 虚拟DOM(Virtual DOM) ****
+	vdom是实现vue和React的重要基石
+	diff算法是vdom中最核心、最关键的部分
+	vdom是面试热门话题
+
+
+	## 1.背景***
+	DOM操作非常耗费性能
+	以前用jquery，可以行控制DOM操作的时机，手动调整
+	vue和React都是数据驱动视图，如何有效控制DOM操作？
+
+	##解决方案 - vdom
+	有一定复杂度，想减少计算次数比较难
+	能不能把计算更多的转为JS，因为JS执行速度很快
+	vdom - 用JS模拟 DOM 结构，计算出最小的变更，操作 DOM
+
+	## 2.用JS模拟ODM结构 *****
+	<div id="div1" class="container">
+		<p>vdom</p>
+		<ul style="font-size:20px">
+			<li>a</li>
+		</ul>
+	</div>
+	<script>
+		var a = {
+			tag: 'div',
+			props: {
+				id: 'div1',
+				className: 'container'
+			},
+			children: [{
+				tag: 'p',
+				children: 'vdom'
+			}, {
+				tag: 'ul',
+				props: {
+					style: 'font-size:20px'
+				},
+				children:[
+					{
+						tag: 'div',
+						children: 'vdom'
+					}
+				]
+			}]
+		}
+	</script>
+
+	## 通过snabbdom学习vdom
+	简介强大的vdom库，易学易用
+	Vue参考它实现的vdom和diff
+
+	Vue3.0重写了vdom的代码，优化了性能，但是vdom基本理念不变
+
+	## 3.snabbdom使用
+	var container = document.getElementById('container') //定义容器
+	var vnode=h(...) //定义虚拟DDM
+	patch(container,vnode) //把虚拟DOM渲染到真实DDM上
+	var newVnode=h(...) //定义新虚拟DDM
+	patch(vnode,newVnode) //更新DDM
+	patch(newVnode,null) //销毁DDM
+
+	## snabbdom重点
+	h函数
+	vnode数据结构
+	patch函数
+
+	##vdom总结
+	用JS模拟ODM结构
+	新旧vnode对比，得出最小更新范围，最后更新DOM （snabbdom使用）
+	数据驱动视图模式下，有效控制DOM操作 （意义）
+</body>
+
+</html>

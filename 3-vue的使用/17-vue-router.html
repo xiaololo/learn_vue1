@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue的使用</title>
+</head>
+
+<body>
+    考点串讲：
+    基本使用，组件使用 ---常用，必须会
+    高级特性 ---不常用，体现深度
+    vuex 和 vue-router的使用
+
+    ## Vue-router
+    路由模式（hash、H5 history）
+    路由配置（动态路由、懒加载）
+
+
+    ## 路由模式
+    hash模式（默认），如 http://abc.com/#/user/10
+    H5 history模式，如 http://abc.com/user/10
+    配置：
+    const router =new VueRouter({
+        mode:'history',//使用H5 history模式
+        routers:[...]
+    })
+    后者需要server端支持，因此无特殊需求可选择前者
+
+
+    ## 路由配置
+    动态路由
+    const User={
+        //取参方式$router.params.id
+        template:'<div>User{{$router.params.id}}</div>'
+    }
+    const router =new VueRouter({
+        routers:[
+            //动态路由参数 以冒号开头。能命中 '/user/10' '/user/20' 等格式的路由
+            { path:'/user/:id',component:User }
+        ]
+    })
+
+    懒加载
+    export default new VueRouter({
+        routers:[
+            {
+                path:'/',
+                component:()=>import('./../components/Navigator')
+            },
+            {
+                path:'/feedback',
+                component:()=>import('./../components/feedback')
+            }
+        ]
+    })
+
+    总结：
+    面试考点不多，
+    掌握基本概念，基本使用
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

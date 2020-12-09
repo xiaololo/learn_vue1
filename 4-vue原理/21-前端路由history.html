@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue 原理</title>
+</head>
+
+<body>
+	Vue原理包括哪些？
+	组件化和MVVM
+	响应式原理
+	vdom和diff算法 （热门技术）
+	模板编译
+	组件渲染过程（考察是否全面）
+	前端路由
+
+	## 前端路由 H5 history
+	用url规范的路由，但跳转时不刷新页面
+	history.pushState
+	window.onpopstate
+
+	## 正常页面浏览
+	https://github.com/xxx 刷新页面
+	https://github.com/xxx/yyy 刷新页面
+	https://github.com/xxx/yyy/zzz 刷新页面
+
+	## 改造成 H5 history 模式
+	https://github.com/xxx 刷新页面
+	https://github.com/xxx/yyy 前端跳转 不刷新页面
+	https://github.com/xxx/yyy/zzz 前端跳转 不刷新页面
+
+
+
+
+
+	## vue实现history路由的原理
+	<p>H5 history</p>
+	<button id="btn1">修改</button>
+	<script>
+		// 首页初次加载，获取path
+		document.addEventListener('DOMContentLoaded', () => {
+			console.log(location.pathname)
+		})
+		// 打开一个新路由
+		// 【注意】用pushState方式，浏览器不会刷新页面
+		// history.pushState() 方法向浏览器历史添加了一个状态。
+		// pushSteate() 接受三个参数：state 对象， title (目前被忽略了)，URL
+		document.getElementById('btn1').addEventListener('click', () => {
+			const state = {
+				name: 'page1'
+			}
+			console.log('切换路由到', 'page1')
+			history.pushState(state, '', 'page1') // pushState ***
+		})
+		//监听浏览器前进后退 onpopstate
+		window.onpopstate = (event) => { //onpopstate *** 
+			console.log('onpopstate', event.state, location.pathname)
+		}
+	</script>
+	总结
+	hash通过window.onhashchange监听hash变化
+	H5 history通过history.pushState()向浏览器历史添加了一个记录，通过onpopstate监听浏览器前进后退
+	H5 history需要后端支持
+
+	两者选择
+	To B系统推荐使用hash，简单易用，对url规范不敏感
+	To C系统，可以考虑H5 history，但需要服务端支持
+
+
+
+</body>
+
+</html>

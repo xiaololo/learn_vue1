@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue 原理</title>
+</head>
+<body>
+    Vue原理包括哪些？
+    组件化和MVVM
+    响应式原理
+    vdom 和diff算法 （热门技术）
+    模板编译
+    组件渲染过程（考察是否全面）
+    前端路由
+
+    ## Vue响应式
+    组件data数据一旦变化，立刻触发视图的更新
+    实现数据驱动视图的第一步
+    考察Vue原理的第一道题
+
+    核心API - Object.defineProperty
+    如何实现响应式，代码演示
+    Object.defineProperty的一些缺点（Vue3.0启用 Proxy）
+
+    Proxy有兼容性问题
+    Proxy兼容性问题，无法polyfill
+
+    ## 1.Object.defineProperty的基本用法
+    <script src="./defineProperty.js"></script>
+
+    ## 2.响应式需要：
+    监听对象（深度监听）、监听数组
+    
+    ## 3.Object.defineProperty缺点
+    深度监听，需要递归到底，一次性计算量大
+    无法监听新增属性/删除属性（解决：Vue.set Vue delete）
+    无法原生监听数组，需要特殊处理
+
+    监听方法
+    <script src="./observe.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue 原理</title>
+</head>
+
+<body>
+	Vue原理包括哪些？
+	组件化和MVVM
+	响应式原理
+	vdom和diff算法 （热门技术）
+	模板编译
+	组件渲染过程（考察是否全面）
+	前端路由
+
+
+
+	## 前端路由原理
+	稍微复杂一点的SPA（single page web application，SPA），都需要路由
+	vue-router 是vue全家桶的标配之一
+	属于“和日常使用相关联的原理”，面试常考
+
+	## 回顾vue-router的路由模式
+	hash
+	h5 history
+
+	## 网页url组成部分
+	https://127.0.0.1:8082/lesson/419.html?a=100&b=20#mid=33876
+	location.protocol //https: 协议
+	location.hostname //127.0.0.1 ip地址/域名
+	location.host //127.0.0.1:8082
+	location.port //8082 端口
+	location.pathname // /lesson/419.html
+	location.search // ?a=100&b=20
+	location.hash // #mid=33876
+
+	## hash的特点
+	hash 变化会触发网页跳转，即浏览器的前进后退
+	hash 变化不会刷新页面，SPA必备
+	hash 永远不会提交到server端
+
+
+
+
+	## vue实现hash路由的原理
+	通过js实现hash路由
+
+	<p>hash test</p>
+	<button id="btn1">修改 hash</button>
+	<script>
+		// onhashchange 事件在当前 URL 的锚部分(以 '#' 号为开始) 发生改变时触发 。
+		// hash 变化，包括：
+		// 手动修改的url
+		// 手动修改url的hash
+		// 浏览器的前进和后退
+		window.onhashchange = (event) => {
+			console.log('old url', event.oldURL)
+			console.log('new url', event.newURL)
+			console.log('hash', location.hash)
+		}
+		// 首页初次加载，获取hash
+		document.addEventListener('DOMContentLoaded', () => {
+			console.log('hash', location.hash)
+		})
+		// js修改url
+		document.getElementById('btn1').addEventListener('click', () => {
+			location.href = "#/user"
+		})
+	</script>
+
+</body>
+
+</html>

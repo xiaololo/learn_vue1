@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue 原理</title>
+</head>
+
+<body>
+	Vue原理包括哪些？
+	组件化和MVVM
+	响应式原理
+	vdom和diff算法 （热门技术）
+	模板编译
+	组件渲染过程（考察是否全面）
+	前端路由
+
+
+
+	## diff 算法 ****
+	diff算法是vdom中最核心、最关键的部分
+	diff算法能在日常使用中体现（key）
+	diff算法是热门面试话题
+
+	## diff 算法概述
+	diff即对比，是一个广泛的概念，如linux diff、git diff
+	两个JS对象也可以做diff
+	两颗树做diff，如vdom diff 
+
+	## 树diff 时间负责度是o(n^3)
+	第一，遍历tree1；第二，遍历tree2
+	第三，排序
+	1000个节点，要计算 1亿次，算法不可用
+
+	###优化时间复杂度到o(n)
+
+	之比较同一级，不跨级比较 
+	tag不相同，则直接删掉重建，不再深度比较 
+	tag和key两者都相同，则认为是相同节点，不再深度比较
+	见diff.png diff2.png
+	patchVnode（）
+	
+</body>
+
+</html>

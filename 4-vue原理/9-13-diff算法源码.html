@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue 原理</title>
+</head>
+
+<body>
+	Vue原理包括哪些？
+	组件化和MVVM
+	响应式原理
+	vdom和diff算法 （热门技术）
+	模板编译
+	组件渲染过程（考察是否全面）
+	前端路由
+
+	snabbdom--源码解读
+	
+
+	## diff算法总结
+	patchVnode  逻辑
+	addVnodes、removeVnodes （使用情况）
+
+	updateChildren（key的重要性）
+	不使用key VS 使用key
+	不使用key：如果节点顺序变了，节点更新时需要全部删掉，
+	使用key：可以算出哪个key是相同的，可以直接移动
+
+	## vdom和diff总结
+	细节不重要，updateChildren的过程不要深究，知道大概过程
+	vdom核心概念：
+		h(传入的什么) 
+		vnode（结构） 
+		patch（作用、参数） 
+		diff（过程、性能优化做了哪些改变、）
+		key（key的重要性）
+	vdom 存在的价值更加重要：基于数据驱动视图，控制dom操作
+
+
+
+
+
+
+
+
+
+
+	
+</body>
+
+</html>
