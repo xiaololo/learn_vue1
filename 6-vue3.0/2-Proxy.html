@@ -19,12 +19,47 @@
 
     ## 基本使用 
     见proxy-reflect.png
+    <!-- <script src="./proxy-demo1.js"></script> -->
     <script src="./proxy-demo.js"></script>
-
-    Reflect
-    实现响应式
-
     
+
+    ## Reflect作用
+        和 Proxy 能力一一对应
+        规范化、标准化、函数式
+        <script>
+            const obj={a:100,b:200}
+            'a' in obj //true
+            Reflect.has(obj,'a')//true
+
+            delete obj.b //true
+            Reflect.deleteProperty(obj,'b') //true
+        </script>
+        替代掉Object上的工具函数
+        <script>
+            const obj={a:100,b:200}
+            Object.getOwnPropertyNames(obj) //["a", "b"]
+            Reflect.ownKeys(obj) // ["a", "b"]
+        </script>
+
+
+
+    ## 实现响应式
+    <!-- <script src="./proxy-observe.js"></script> -->
+    相较于vue2
+    深度监听，性能更好
+    可监听新增删除的属性
+    可监听数组变化
+
+
+    总结：
+    Proxy 能规避 Oject.defineProperty的问题
+    Proxy无法兼容所有浏览器，无法 polyfill
+
+
+
+    <script>
+
+    </script>
 
 </body>
 </html>

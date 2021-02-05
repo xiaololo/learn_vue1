@@ -26,9 +26,8 @@ function defineReactive(target, key, value) {
             return value;
         },
         set(newValue){
-            if (newValue != value) {
-                // 设置新值-也需要监听
-                observer(newValue)
+            if (value != newValue) {
+                // 设置新值
                 // 注意，value一直在闭包中，此处设置完之后，再get时也是会获取最新的值。
                 value = newValue
                 // 触发更新视图

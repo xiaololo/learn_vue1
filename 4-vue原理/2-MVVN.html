@@ -14,23 +14,24 @@
     组件渲染过程（考察是否全面）
     前端路由
 
-    ## 1组件化基础
+    ## 组件化
     很久以前的组件化：
     asp jsp php 已经有组件化了
     nodejs 中也有类似的组件化
+    传统组件，只是静态渲染，更新还要依赖于操作DOM
 
-    2 传统组件，只是静态渲染，更新还要依赖于操作DOM
-    数据驱动视图 -Vue MVVM
-    数据驱动视图 -React setState
+    ## 数据驱动视图
+    Vue 通过 MVVM 实现数据驱动视图
+    React 通过 setState 实现数据驱动视图
     
     ## 3 MVVM 数据驱动视图 必须掌握 *****
     mvvm流程图了解 
+    Model 模型-vue组件的data数据
     view  视图-DOM
-    Model 模型-vuex的数据
-    viewModel 
-    监听事件、监听指令
+    viewModel 监听事件、监听指令
 
-
+    view 的点击事件、DOM事件 通过 viewModel 的监听 可以修改 Model中的数据；
+    Model 数据修改，通过 viewModel 可以修改视图 view
 </body>
 </html>
 

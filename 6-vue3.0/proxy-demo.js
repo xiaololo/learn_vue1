@@ -2,49 +2,52 @@
 //     name: 'lili',
 //     age: 20,
 // }
-const data =['a','b','c']
+const data = ['a', 'b', 'c']
 const proxyData = new Proxy(data, {
-    // target：目标对象、 key：被捕获的属性名、receiver：Proxy或者继承Proxy的对象
-    get(target, key, receiver) {
-        // 只处理本身（非原型）的属性
-        const ownKeys = Reflect.ownKeys(target)
-        if (ownKeys.includes(key)) {
-            console.log('get',key)//监听
-        }
-        const result = Reflect.get(target, key, receiver)
-        return result //返回结果
-    },
-    // value 新属性值。
-    set(target, key, value, receiver) {
-        // 重复的数据不处理
-        const result = Reflect.set(target, key, value, receiver)
-        console.log('set', key, value) //set age 30
-        console.log('result', result) //result true
-        return result //是否设置成功
-    },
-    deleteProperty(target, key) {
-        const result = Reflect.deleteProperty(target, key)
-        console.log('delete property', key) //delete property name
-        console.log('result', result) //result true
-        return result //是否删除成功
-    },
+  // target：目标对象、 key：被捕获的属性名、receiver：Proxy或者继承Proxy的对象
+  get(target, key, receiver) {
+    // 只监听 处理本身（非原型）的属性
+    const ownKeys = Reflect.ownKeys(target)
+    if (ownKeys.includes(key)) {
+      console.log('get', key) //监听
+    }
+    const result = Reflect.get(target, key, receiver)
+    return result //返回结果
+  },
+  // value 新属性值。
+  set(target, key, value, receiver) {
+    if (ownKeys.includes(key)) {
+      console.log('已有的 key') //监听
+    } else {
+      console.log('新增的 key')
+    }
+    // 重复的数据不处理
+    if (value === target[key]) {
+      return true
+    }
+    const result = Reflect.set(target, key, value, receiver)
+    console.log('set', key, value) //set age 30
+    return result //是否设置成功
+  },
+  deleteProperty(target, key) {
+    const result = Reflect.deleteProperty(target, key)
+    console.log('delete property', key) //delete property name
+    return result //是否删除成功
+  },
 })
 // 对象操作
 // proxyData.age // get操作
 // proxyData.age = 30 // set操作
+// proxyData.sex = "女" // set操作
 // delete proxyData.name // 删除操作
 
 
 // 数组操作
 proxyData.push('d')
-// get push
 // get length
-// set 3 d
-// result true
-// set length 4
-// result true
+// set 3 d 
 
-// 只处理非原型的属性
+// 只监听 处理非原型的属性
 // const ownKeys = Reflect.ownKeys(target)
 // if (ownKeys.includes(key)) {
 //     console.log('get', key) //监听
@@ -52,9 +55,18 @@ proxyData.push('d')
 
 // get length
 // set 3 d
-// result true
 // set length 4
-// result true
+
+// 重复的数据不处理
+// const oldVal = target[key]
+// if (value == oldVal) {
+//     return true
+// }
+
+// get length
+// set 3 d
+
+
 
 
 

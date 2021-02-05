@@ -12,6 +12,9 @@
     vdom 和diff算法 （热门技术）
     模板编译
     组件渲染过程（考察是否全面）
+        解析模板为render函数（或在开发环境中已完成，vue-loader）
+        触发响应式，监听data属性的getter setter
+        执行render函数，生成vnode, patch(elem,vnode)
     前端路由
 
     ## Vue响应式
@@ -30,15 +33,20 @@
     <script src="./defineProperty.js"></script>
 
     ## 2.响应式需要：
+    
+    在基本用法中，不能监听复杂对象和数组
+    实现
     监听对象（深度监听）、监听数组
     
     ## 3.Object.defineProperty缺点
     深度监听，需要递归到底，一次性计算量大
-    无法监听新增属性/删除属性（解决：Vue.set Vue delete）
+    无法监听新增属性/删除属性【解决办法：Vue.set Vue delete，新增和删除后通知视图更新】
     无法原生监听数组，需要特殊处理
 
     监听方法
     <script src="./observe.js"></script>
+
+
 
 
 

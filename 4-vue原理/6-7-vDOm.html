@@ -13,12 +13,16 @@
 	响应式原理
 	vdom 和diff算法 （热门技术）
 	模板编译
-	组件渲染过程（考察是否全面）
+  组件渲染过程（考察是否全面）
+    解析模板为render函数（或在开发环境中已完成，vue-loader）
+    触发响应式，监听data属性的getter setter
+    执行render函数，生成vnode, patch(elem,vnode)
 	前端路由
 
 	## 虚拟DOM(Virtual DOM) ****
 	vdom是实现vue和React的重要基石
 	diff算法是vdom中最核心、最关键的部分
+
 	vdom是面试热门话题
 
 
@@ -27,7 +31,7 @@
 	以前用jquery，可以行控制DOM操作的时机，手动调整
 	vue和React都是数据驱动视图，如何有效控制DOM操作？
 
-	##解决方案 - vdom
+	## 解决方案 - vdom
 	有一定复杂度，想减少计算次数比较难
 	能不能把计算更多的转为JS，因为JS执行速度很快
 	vdom - 用JS模拟 DOM 结构，计算出最小的变更，操作 DOM
@@ -70,7 +74,8 @@
 
 	Vue3.0重写了vdom的代码，优化了性能，但是vdom基本理念不变
 
-	## 3.snabbdom使用
+  ## 3.snabbdom使用
+  见文件snabbdom-demo
 	var container = document.getElementById('container') //定义容器
 	var vnode=h(...) //定义虚拟DDM
 	patch(container,vnode) //把虚拟DOM渲染到真实DDM上
